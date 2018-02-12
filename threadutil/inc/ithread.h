@@ -319,7 +319,7 @@ static UPNP_INLINE int ithread_cleanup_thread(void) {
  *      Returns EINVAL if the kind is not supported.
  *      See man page for pthread_mutexattr_setkind_np
  *****************************************************************************/
-#if defined(PTHREAD_MUTEX_RECURSIVE) || defined(__DragonFly__)
+#if defined(PTHREAD_MUTEX_RECURSIVE) || defined(__DragonFly__) || defined(__linux__)
 	#define ithread_mutexattr_setkind_np pthread_mutexattr_settype
 #else
 	#define ithread_mutexattr_setkind_np pthread_mutexattr_setkind_np

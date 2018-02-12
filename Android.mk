@@ -75,7 +75,7 @@ LOCAL_SRC_FILES:= \
 	upnp/sample/common/sample_util.c \
 	upnp/sample/common/tv_ctrlpt.c \
 	upnp/sample/common/tv_device.c \
-	upnp/sample/linux/upnp_tv_combo_main.c
+	upnp/sample/linux/tv_combo_main.c
 
 LOCAL_CFLAGS += -Wno-format -DHAVE_CONFIG_H  -D_THREAD_SAFE -DDEBUG
 LOCAL_C_INCLUDES += $(common_C_INCLUDES)
