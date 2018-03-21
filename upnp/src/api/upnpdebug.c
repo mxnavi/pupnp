@@ -45,6 +45,11 @@
 #include <stdio.h>
 #include <string.h>
 
+#ifdef __ANDROID__
+#define LOG_TAG "ml.upnp"
+#include <cutils/log.h>
+#endif
+
 #ifdef DEBUG
 
 /*! Mutex to synchronize all the log file opeartions in the debug mode */
@@ -131,6 +136,29 @@ void UpnpPrintf(Upnp_LogLevel DLevel,
 
 	if (!DebugAtThisLevel(DLevel, Module))
 		return;
+#ifdef __ANDROID__
+    {
+        char buf[4096];
+	va_start(ArgList, FmtStr);
+	if (!DEBUG_TARGET) {
+		if (DbgFileName)
+			ALOGD("%s %d:", DbgFileName, DbgLineNo);
+		vsnprintf(buf, sizeof(buf), FmtStr, ArgList);
+		ALOGD("%s", buf);
+	} else if (DLevel == 0) {
+		if (DbgFileName)
+			ALOGE("%s %d:", DbgFileName, DbgLineNo);
+		vsnprintf(buf, sizeof(buf), FmtStr, ArgList);
+		ALOGE("%s", buf);
+	} else {
+		if (DbgFileName)
+			ALOGI("%s %d:", DbgFileName, DbgLineNo);
+		vsnprintf(buf, sizeof(buf), FmtStr, ArgList);
+		ALOGI("%s", buf);
+        }
+        va_end(ArgList);
+    }
+#else
 	ithread_mutex_lock(&GlobalDebugMutex);
 	va_start(ArgList, FmtStr);
 	if (!DEBUG_TARGET) {
@@ -151,8 +179,9 @@ void UpnpPrintf(Upnp_LogLevel DLevel,
 		vfprintf(InfoFileHnd, FmtStr, ArgList);
 		fflush(InfoFileHnd);
 	}
-	va_end(ArgList);
+        va_end(ArgList);
 	ithread_mutex_unlock(&GlobalDebugMutex);
+#endif
 }
 
 FILE *GetDebugFile(Upnp_LogLevel DLevel, Dbg_Module Module)
