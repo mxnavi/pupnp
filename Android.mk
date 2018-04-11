@@ -62,7 +62,7 @@ common_C_INCLUDES := \
 include $(CLEAR_VARS)
 LOCAL_MODULE := libupnp
 LOCAL_SRC_FILES := $(common_SRC_FILES)
-LOCAL_CFLAGS += -Wno-format -DHAVE_CONFIG_H  -D_THREAD_SAFE -DDEBUG
+LOCAL_CFLAGS += -Wno-format -DHAVE_CONFIG_H  -D_THREAD_SAFE #-DDEBUG
 LOCAL_C_INCLUDES += $(common_C_INCLUDES)
 LOCAL_MODULE:= libupnp
 LOCAL_MODULE_TAGS := optional
@@ -77,7 +77,7 @@ LOCAL_SRC_FILES:= \
 	upnp/sample/common/tv_device.c \
 	upnp/sample/linux/tv_combo_main.c
 
-LOCAL_CFLAGS += -Wno-format -DHAVE_CONFIG_H  -D_THREAD_SAFE -DDEBUG
+LOCAL_CFLAGS += -Wno-format -DHAVE_CONFIG_H  -D_THREAD_SAFE #-DDEBUG
 LOCAL_C_INCLUDES += $(common_C_INCLUDES)
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/upnp/sample/common/
 
@@ -93,7 +93,7 @@ LOCAL_SRC_FILES:= \
 	upnp/sample/common/tv_ctrlpt.c \
 	upnp/sample/linux/tv_ctrlpt_main.c
 
-LOCAL_CFLAGS += -Wno-format -DHAVE_CONFIG_H  -D_THREAD_SAFE -DDEBUG
+LOCAL_CFLAGS += -Wno-format -DHAVE_CONFIG_H  -D_THREAD_SAFE #-DDEBUG
 LOCAL_C_INCLUDES += $(common_C_INCLUDES)
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/upnp/sample/common/
 
@@ -109,7 +109,7 @@ LOCAL_SRC_FILES:= \
 	upnp/sample/common/tv_device.c \
 	upnp/sample//linux/tv_device_main.c
 
-LOCAL_CFLAGS += -Wno-format -DHAVE_CONFIG_H  -D_THREAD_SAFE -DDEBUG
+LOCAL_CFLAGS += -Wno-format -DHAVE_CONFIG_H  -D_THREAD_SAFE #-DDEBUG
 LOCAL_C_INCLUDES += $(common_C_INCLUDES)
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/upnp/sample/common/
 
