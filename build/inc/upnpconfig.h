@@ -87,7 +87,7 @@
 
 /** Defined to 1 if the library has been compiled with client API enabled 
  *  (i.e. configure --enable-client) */
-#define UPNP_HAVE_CLIENT 1
+/* #define UPNP_HAVE_CLIENT 1 */
 
 
 /** Defined to 1 if the library has been compiled with device API enabled 
