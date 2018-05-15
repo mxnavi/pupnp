@@ -49,7 +49,6 @@
 #define LOG_TAG "ml.upnp"
 #include <cutils/log.h>
 #endif
-
 #ifdef DEBUG
 
 /*! Mutex to synchronize all the log file opeartions in the debug mode */
@@ -179,7 +178,7 @@ void UpnpPrintf(Upnp_LogLevel DLevel,
 		vfprintf(InfoFileHnd, FmtStr, ArgList);
 		fflush(InfoFileHnd);
 	}
-        va_end(ArgList);
+	va_end(ArgList);
 	ithread_mutex_unlock(&GlobalDebugMutex);
 #endif
 }

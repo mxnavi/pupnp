@@ -56,6 +56,7 @@ common_C_INCLUDES := \
 	$(LOCAL_PATH)/threadutil/inc \
 	$(LOCAL_PATH)/upnp/inc \
 	$(LOCAL_PATH)/upnp/src/inc \
+	$(LOCAL_PATH)/build/inc \
 
 # Shared or static library for target
 # ========================================================
