@@ -814,6 +814,9 @@ static int create_ssdp_sock_v4(
 		ret = UPNP_E_SOCKET_ERROR;
 		goto error_handler;
 	}
+
+    sock_bind_to_device(*ssdpSock, NULL);
+
 #if (defined(BSD) && !defined(__GNU__)) || defined(__OSX__) || defined(__APPLE__)
 	onOff = 1;
 	ret = setsockopt(*ssdpSock, SOL_SOCKET, SO_REUSEPORT,

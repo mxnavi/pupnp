@@ -57,6 +57,11 @@
 #include <time.h>
 #include <string.h>
 
+#ifdef __ANDROID__
+#include <cutils/properties.h>
+#endif
+#include <linux/if.h>
+
 #ifndef MSG_NOSIGNAL
 #define MSG_NOSIGNAL 0
 #endif
@@ -253,5 +258,35 @@ int sock_make_no_blocking(SOCKET sock)
 #endif /* WIN32 */
 	return 0;
 }
+
+void sock_bind_to_device(int s, const char *iface) {
+#ifdef __ANDROID__
+    char v[PROPERTY_VALUE_MAX];
+#else
+    char v[IFNAMSIZ]
+#endif
+
+    if (iface == NULL) {
+#ifdef __ANDROID__
+        property_get("ml.interface", v, "");
+#else
+        memset(v, 0x00, sizeof(v));
+#endif
+    } else {
+        strncpy(v, iface, IFNAMSIZ);
+    }
+    if (v[0] != '\0') {
+        struct ifreq ifr;
+        memset(&ifr, 0, sizeof(ifr));
+        snprintf(ifr.ifr_name, sizeof(ifr.ifr_name), "%s", v);
+        if (setsockopt(s, SOL_SOCKET, SO_BINDTODEVICE, (void *)&ifr,
+                       sizeof(ifr)) < 0) {
+            UpnpPrintf(UPNP_CRITICAL, MSERV, __FILE__, __LINE__,
+                "SO_BINDTODEVICE(%s) failed %d (%s)", v, errno,
+                 strerror(errno));
+        }
+    }
+}
+
 
 /* @} Sock */

@@ -184,6 +184,9 @@ int sock_make_no_blocking(
 	/* [in] socket. */
 	SOCKET sock);
 
+
+void sock_bind_to_device(SOCKET s, const char *iface);
+
 #ifdef __cplusplus
 }	/* #extern "C" */
 #endif

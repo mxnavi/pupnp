@@ -581,6 +581,9 @@ static int get_miniserver_sockets(
 		listen_port6 = (uint16_t)APPLICATION_LISTENING_PORT;
 	}
 #endif
+
+    sock_bind_to_device(listenfd4, NULL);
+
 	memset(&__ss_v4, 0, sizeof (__ss_v4));
 	serverAddr4->sin_family = (sa_family_t)AF_INET;
 	inet_pton(AF_INET, gIF_IPV4, &serverAddr4->sin_addr);

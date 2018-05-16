@@ -163,7 +163,7 @@
 #define UPNP_HAVE_WEBSERVER 1
 
 /* see upnpconfig.h */
-/* #undef UPNP_MINISERVER_REUSEADDR */
+#define UPNP_MINISERVER_REUSEADDR 1
 
 /* Do not use pthread_rwlock_t */
 #define UPNP_USE_RWLOCK 1
