@@ -314,6 +314,7 @@ static void web_server_accept(SOCKET lsock, fd_set *set)
 				"miniserver: Error in accept(): %s\n",
 				errorBuffer);
 		} else {
+			sock_bind_to_device(asock, NULL);
 			schedule_request_job(asock,
 				(struct sockaddr *)&clientAddr);
 		}
